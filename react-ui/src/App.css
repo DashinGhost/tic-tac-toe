@@ -1,16 +1,17 @@
 .App {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 .mainbox {
   display: flex;
-  width: 270px;
+  width: 268.8px;
   flex-wrap: wrap;
   border: 5px solid rgb(0, 0, 0);
   align-items: end;
+  border-radius: 2%;
 }
 .cell {
   height: 80px;
@@ -21,11 +22,38 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
+  font-size: 50px;
+  font-weight: 800;
 }
 
+.cell-PLAYER1:hover {
+  background-color: rgb(182, 227, 182);
+}
+.cell-PLAYER2:hover {
+  background-color: rgb(227, 182, 182);
+}
 
-.form {
+.PLAYER1-cell {
+  background-color: rgb(182, 227, 182);
+}
+.PLAYER2-cell {
+  background-color: rgb(227, 182, 182);
+}
+
+#ttt {
+  font-size: 50px;
+  font-weight: 800;
+}
+
+#player-info {
+  /* font-size: 18px; */
+  display: flex;
+  gap: 30px;
+}
+
+#player-info p{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap:10px
 }

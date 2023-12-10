@@ -42,7 +42,7 @@ const gameInput = catchAsync(async (req, res, next) => {
     await Game.create(gameData);
   } else {
     const updatedGame = await Game.findOneAndUpdate({ _id: gameId }, gameData, { new: true});
-    if(checkWin(updatedGame.player1Turns)) {
+    if(checkWin(updatedGame.player1Turns)[0]) {
       await User.updateOne({ _id: email1 }, { $inc: { wins: 1 } });
       await User.updateOne({ _id: email2 }, { $inc: { looses: 1 } });
       return res.status(200).json({
@@ -50,11 +50,12 @@ const gameInput = catchAsync(async (req, res, next) => {
         data: {
           nextPlayer,
           winningPlayer: "PLAYER1",
+          winningCells: checkWin(updatedGame.player1Turns)[1]
         },
       });
     }
 
-    if(checkWin(updatedGame.player2Turns)) {
+    if(checkWin(updatedGame.player2Turns)[0]) {
       await User.updateOne({ _id: email2 }, { $inc: { wins: 1 } });
       await User.updateOne({ _id: email1 }, { $inc: { looses: 1 } });
       return res.status(200).json({
@@ -62,6 +63,7 @@ const gameInput = catchAsync(async (req, res, next) => {
         data: {
           nextPlayer,
           winningPlayer: "PLAYER2",
+          winningCells: checkWin(updatedGame.player2Turns)[1]
         },
       });
     }
